@@ -1,0 +1,5 @@
+[2022-06-22 15:35:46] local.INFO: Stk Confirmation call back  
+[2022-06-22 15:35:46] local.INFO: array (
+  'status' => '\'sucess\'',
+  'order_id' => '18',
+)  

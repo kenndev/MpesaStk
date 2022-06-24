@@ -29,9 +29,8 @@ class MpesaController extends Controller
         $order->id = 18;
         $order->price = $request->input('amount');
 
-        return $this->paymentRequest($order, $request->input('phonenumber'));
-
-        //return redirect()->back()->with('errormessage', 'STK Message Sent');
+        //return $this->paymentRequest($order, $request->input('phonenumber'));
+        return redirect()->back()->with('errormessage', 'bloddy works');
     }
 
     public function getAccessKey()
@@ -75,10 +74,10 @@ class MpesaController extends Controller
             'Timestamp' => $timestamp,
             'TransactionType' => 'CustomerPayBillOnline',
             'Amount' => '1',
-            'PartyA' => '254708374149',
+            'PartyA' => '2547083741497',
             'PartyB' => '174379',
-            'PhoneNumber' => '254708374149',
-            'CallBackURL' => $this->makeCallbackUrl('success', $order),
+            'PhoneNumber' => '2547083741497',
+            'CallBackURL' => 'http://localhost/payment',
             'AccountReference' => 'CompanyXLTD',
             'TransactionDesc' => 'Payment of X'
         ];
@@ -93,16 +92,16 @@ class MpesaController extends Controller
         Log::info("Stk request");
         Log::info($curl_response);
 
-        if (isset($reponse->errorMessage)) {
-
-            return redirect()->back()->with('errormessage', $reponse->errorMessage);
-        } else {
-            if ($reponse->ResponseCode == 0) {
-                return redirect()->back()->with('message', 'Please check you phone and enter your Mpesa pin to continue the payment process');
-            } else {
-                return redirect()->back()->with('errormessage', 'Invalid phone number. Please ensure your number is correct and registered to M-Pesa');
-            }
-        }
+        // if (isset($reponse->errorMessage)) {
+        //     return redirect()->back()->with('errormessage', $reponse->errorMessage);
+        // } else {
+        //     if ($reponse->ResponseCode == 0) {
+        //         return redirect()->route('mpesa')->withInput()->with('errormessage', 'Please check you phone and enter your Mpesa pin to continue the payment process');
+        //     } else {
+        //         return redirect()->route('mpesa')->withInput()->with('errormessage', 'Invalid phone number. Please ensure your number is correct and registered to M-Pesa');
+        //     }
+        // }
+        return redirect()->back()->with('errormessage', 'bloddy works');
     }
 
     private function makeCallbackUrl($status, $order)

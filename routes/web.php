@@ -33,4 +33,5 @@ Route::post('/process-mpesa', [MpesaController::class, 'ProcessMpesa'])->name('p
 Route::get('/payments/verify', [MpesaController::class, 'verify'])->name('verify');
 Route::post('/payments/verify', [MpesaController::class, 'verify'])->name('verify');
 
+
 require __DIR__.'/auth.php';
