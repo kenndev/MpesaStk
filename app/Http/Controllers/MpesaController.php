@@ -29,8 +29,8 @@ class MpesaController extends Controller
         $order->id = 18;
         $order->price = $request->input('amount');
 
-        //return $this->paymentRequest($order, $request->input('phonenumber'));
-        return redirect()->back()->with('errormessage', 'bloddy works');
+        return $this->paymentRequest($order, $request->input('phonenumber'));
+        //return redirect()->back()->with('errormessage', 'bloddy works');
     }
 
     public function getAccessKey()
@@ -92,15 +92,15 @@ class MpesaController extends Controller
         Log::info("Stk request");
         Log::info($curl_response);
 
-        // if (isset($reponse->errorMessage)) {
-        //     return redirect()->back()->with('errormessage', $reponse->errorMessage);
-        // } else {
-        //     if ($reponse->ResponseCode == 0) {
-        //         return redirect()->route('mpesa')->withInput()->with('errormessage', 'Please check you phone and enter your Mpesa pin to continue the payment process');
-        //     } else {
-        //         return redirect()->route('mpesa')->withInput()->with('errormessage', 'Invalid phone number. Please ensure your number is correct and registered to M-Pesa');
-        //     }
-        // }
+        if (isset($reponse->errorMessage)) {
+            return redirect()->back()->with('errormessage', $reponse->errorMessage);
+        } else {
+            if ($reponse->ResponseCode == 0) {
+                return redirect()->back()->with('errormessage', 'Please check you phone and enter your Mpesa pin to continue the payment process');
+            } else {
+                return redirect()->back()->with('errormessage', $reponse->errorMessage);
+            }
+        }
         return redirect()->back()->with('errormessage', 'bloddy works');
     }
 
