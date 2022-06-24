@@ -74,10 +74,10 @@ class MpesaController extends Controller
             'Timestamp' => $timestamp,
             'TransactionType' => 'CustomerPayBillOnline',
             'Amount' => '1',
-            'PartyA' => '2547083741497',
+            'PartyA' => '254708374149',
             'PartyB' => '174379',
-            'PhoneNumber' => '2547083741497',
-            'CallBackURL' => 'http://localhost/payment',
+            'PhoneNumber' => '254708374149',
+            'CallBackURL' => $this->makeCallbackUrl('success', $order),
             'AccountReference' => 'CompanyXLTD',
             'TransactionDesc' => 'Payment of X'
         ];
